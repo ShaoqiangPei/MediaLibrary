@@ -192,9 +192,11 @@ public class Player {
         } catch (IllegalStateException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            MediaLog.i("=====缓冲播放器失败==1========"+e.getMessage());
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            MediaLog.i("=====缓冲播放器失败==2========"+e.getMessage());
         }
     }
 
@@ -225,6 +227,7 @@ public class Player {
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
+            MediaLog.i("=====mediaPlayer释放资源==========");
         }
     }
 

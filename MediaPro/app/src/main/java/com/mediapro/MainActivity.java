@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MediaLog.i("=======我点击了=======");
 
-                if(index==0){
-                    mPlayer.setDataByAssets("order_tip.mp3");
-                }else if(index==1){
-                    mPlayer.setDataByRaw(R.raw.order_tip);
-                }else if(index==2){
+//                if(index==0){
+//                    mPlayer.setDataByAssets("order_tip.mp3");
+//                }else if(index==1){
+//                    mPlayer.setDataByRaw(R.raw.order_tip);
+//                }else if(index==2){
                     mPlayer.setDataByUrl("http://np01.sycdn.kuwo.cn/7591a48f2fddfd3e8ab64601e133d2fe/5e3adec5/resource/n1/28/66/1638975979.mp3");
-                }
+//                }
                 mPlayer.start(null);
                 index++;
                 if(index>2){

@@ -15,10 +15,8 @@ SpeechHelper采用的是在线语音合成，所以需要网络权限。本库�
 在你项目的自定义Application中初始化，你可以这样：
 ```
         //语音合成初始化
-        SpeechHelper.getInstance().initSpeech(null)//为null时使用默认appid初始化。也可以设置自己项目的appid
-```
-此处`initSpeech(String appid)`中的`appid`,你可以使用自己在`科大讯飞官网`上注册的语音合成功能的`appid`,也可以直接设置为`null`。
-当设置为`null`时jian，将使用本项目默认的`appid`。  
+        SpeechHelper.getInstance().initSpeech();
+```  
 若你要对语音合成做些基本的参数设置，你可以在你界面的初始化中做如下设置：
 ```
         //语音合成参数设置
@@ -30,7 +28,7 @@ SpeechHelper采用的是在线语音合成，所以需要网络权限。本库�
 若你项目中关于`语音合成`功能参数的设置只需一次，那么你可以直接在你项目的自定义Application中与SpeechHelper的初始化一起设置完，示例如下：  
 ```
         //语音合成初始化及参数设置
-        SpeechHelper.getInstance().initSpeech(null)//为null时使用默认appid初始化。也可以设置自己项目的appid
+        SpeechHelper.getInstance().initSpeech()
                 .setVoicer(5)//设置发音人(index范围[0-17],默认index=5,"vixy")
                 .setCompoundSpeed(50)//设置语速(参数0-100,默认50)
                 .setCompoundTones(50)//设置音调(参数0-100,默认50)
@@ -65,9 +63,12 @@ SpeechHelper采用的是在线语音合成，所以需要网络权限。本库�
         SpeechHelper.getInstance().destroy();
 ```
 #### 四.语音播报需要注意的问题
+##### 4.1 播报不是期望值
 当你调用以下代码：
 ```
 SpeechHelper.getInstance().speak("130");
 ```
 也许你希望它播报的是“一三零”，但遗憾的是它可能播报成“一百三十”，这是一件很尴尬的事，那么当你需要它播成“一三零”的话，你需要在“130”中做下处理，将每个数字间增加空格，及“130”写成“1 3 0”，这样就能播报“一三零”了。
+##### 4.2 播报限制
+本工具类(语音合成)采用科大讯飞实现,了解更多可参考[讯飞开放平台](https://www.xfyun.cn/)。由于使用的是免费版，且未经实名认证，所以语音合成次数是`500次/天`,超过当天使用次数，调用播报功能将提示 `未经授权的语音应用.(错误码:11201)` 错误。并且当天调用将不再发出声音。
 

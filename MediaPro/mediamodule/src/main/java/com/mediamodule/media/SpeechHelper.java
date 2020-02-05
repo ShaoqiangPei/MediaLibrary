@@ -21,7 +21,7 @@ import com.mediamodule.util.StringUtil;
  */
 public class SpeechHelper {
 
-    //默认appid
+    //语音播报appid
     private static final String APPID="5afcdbda";
 
     private String[] mCloudVoicersEntries={"小燕—女青、中英、普通话","小宇—男青、中英、普通话","凯瑟琳—女青、英",
@@ -48,8 +48,6 @@ public class SpeechHelper {
     //音量(参数0-100,默认50)
     private int mCompoundVoice=Integer.valueOf(COMPOUND_VOICE);
 
-    //语音播报的appId
-    private String mAppId=APPID;
     // 语音合成对象
     private SpeechSynthesizer mTts;
     // 发音人(下标0-17,默认下标5)
@@ -74,14 +72,10 @@ public class SpeechHelper {
 
     /**
      * 自定义application中调用
-     * @param appid 为null时使用默认appid初始化。也可以设置自己项目的appid
      * @return
      */
-    public SpeechHelper initSpeech(String appid){
-        if(StringUtil.isNotEmpty(appid)){
-            mAppId=appid;
-        }
-        SpeechUtility.createUtility(MediaConfig.getInstance().getApplication(), "appid=" + mAppId);
+    public SpeechHelper initSpeech(){
+        SpeechUtility.createUtility(MediaConfig.getInstance().getApplication(), "appid=" + APPID);
 //        //以下语句用于设置日志开关（默认开启），设置成false时关闭语音云SDK日志打印
 //        Setting.setShowLog(false);
         return SpeechHelper.this;

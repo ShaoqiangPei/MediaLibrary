@@ -1,7 +1,9 @@
 # MediaLibrary
-媒体工具库
 
 [![](https://jitpack.io/v/ShaoqiangPei/MediaLibrary.svg)](https://jitpack.io/#ShaoqiangPei/MediaLibrary)
+
+## 简介
+MediaLibrary是一个媒体工具库
 
 ## 使用说明
 ### 一. 库依赖
@@ -27,4 +29,6 @@
           .setDebug(true);//是否开启本库内部log打印(默认false,不开启)
 ```
 ### 二. 主要功能类
+[SpeechHelper](https://github.com/ShaoqiangPei/MediaLibrary/blob/master/readme/SpeechHelper%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md) ———— 语音合成工具类,主要用于将文字转语音  
+
 

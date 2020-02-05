@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 
 import com.mediamodule.R;
 import com.mediamodule.app.MediaConfig;
+import com.mediamodule.util.FileUtil;
 import com.mediamodule.util.MediaLog;
 import com.mediamodule.util.StringUtil;
 
@@ -40,6 +41,10 @@ public class Player {
     public void setDataByAssets(String fileName){
         if(StringUtil.isEmpty(fileName)){
             throw new NullPointerException("播放文件名不能为空");
+        }
+        //判断某个文件是否存在于Assets文件夹中
+        if(!FileUtil.isExistInAssets(fileName)){
+            throw new SecurityException("==Assets文件夹中不存在"+fileName+"文件===");
         }
         //释放资源
         release();

@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+//android配置
+def config = rootProject.ext.android
+//相关库依赖
+def librarys = rootProject.ext.supportDependencies
+
+android {
+
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+    defaultConfig {
+        applicationId config.applicationId
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        testInstrumentationRunner config.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 注意：这是解决java_1.8声明的关键点。
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation librarys.implementation_support_appcompat
+    implementation librarys.implementation_constraint_layout
+    testImplementation librarys.testImplementation_test_junit
+    androidTestImplementation librarys.androidTestImplementation_ext_junit
+    androidTestImplementation librarys.androidTestImplementation_espresso
+    implementation project(path: ':mediamodule')
+}

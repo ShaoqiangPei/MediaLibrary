@@ -114,14 +114,14 @@ public class Player {
      * 用于测试的url(雨一直下)："http://np01.sycdn.kuwo.cn/7591a48f2fddfd3e8ab64601e133d2fe/5e3adec5/resource/n1/28/66/1638975979.mp3"
      * 若测试url失效，可在网址(https://www.dj63.com/dj/96321.html)上寻找可运行的MP3外链
      */
-    public void setDataByUrl(String url){
+    public boolean setDataByUrl(String url){
         if(StringUtil.isEmpty(url)){
             throw new NullPointerException("播放url不能为空");
         }
         //判断网络
         if(!NetUtil.isNetworkConnected()){
             MediaLog.i("=====网络未连接,不能播放网络音乐文件=======");
-            return;
+            return false;
         }
         //释放资源
         release();
@@ -136,6 +136,7 @@ public class Player {
             mDataType=NO_DATA;
             MediaLog.i("=====设置播放源为网络url链接失败======="+e.getMessage());
         }
+        return true;
     }
 
     /** 开始播放 **/

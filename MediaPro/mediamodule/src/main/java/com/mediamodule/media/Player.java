@@ -10,6 +10,7 @@ import com.mediamodule.util.FileUtil;
 import com.mediamodule.util.MediaLog;
 import com.mediamodule.util.StringUtil;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -29,8 +30,6 @@ public class Player {
 
     private MediaPlayer mediaPlayer;
     private int mDataType=NO_DATA;//播放源类型
-
-    public Player(){}
 
     /**
      * 设置播放源为Assets文件夹
@@ -85,12 +84,17 @@ public class Player {
     /**
      * 设置播放源为 Sdcard 路径
      *
-     * @param filePath 播放文件路径
+     * @param filePath 播放文件路径,如：getCacheDir().getAbsolutePath()+ File.separator+"order_tip.mp3"
      * 注:需要设置手动文件读写权限 和 provider文件读写权限
      */
     public void setDataBySdcardPath(String filePath){
         if(StringUtil.isEmpty(filePath)){
             throw new NullPointerException("播放文件路径不能为空");
+        }
+        //判断播放文件是否存在
+        File file=new File(filePath);
+        if(!file.exists()){
+            throw new SecurityException("播放文件不存在");
         }
         //释放资源
         release();
@@ -111,6 +115,7 @@ public class Player {
      *
      * @param url: "http://..../xxx.mp3"
      * 用于测试的url(雨一直下)："http://np01.sycdn.kuwo.cn/7591a48f2fddfd3e8ab64601e133d2fe/5e3adec5/resource/n1/28/66/1638975979.mp3"
+     * 若测试url失效，可在网址(https://www.dj63.com/dj/96321.html)上寻找可运行的MP3外链
      */
     public void setDataByUrl(String url){
         if(StringUtil.isEmpty(url)){
@@ -127,6 +132,7 @@ public class Player {
             e.printStackTrace();
             //设置播放源失败的处理
             mDataType=NO_DATA;
+            MediaLog.i("=====设置播放源为网络url链接失败======="+e.getMessage());
         }
     }
 
@@ -157,8 +163,8 @@ public class Player {
                     break;
                 case SDCARD_DATA://设置播放源为sdcard文件路径
                     MediaLog.i("====播放源来自sdcard文件路径=====");
-                    //异步缓冲
-                    bufferPlayer(true);
+                    //同步缓冲
+                    bufferPlayer(false);
                     break;
                 case URL_DATA://设置播放源为网络url链接
                     MediaLog.i("====播放源来自网络url链接=====");
@@ -170,6 +176,7 @@ public class Player {
             }
             // 开始播放
             mediaPlayer.start();
+            MediaLog.i("=======开始播放======");
             mediaPlayer.setOnCompletionListener(onCompletionListener);
         }else{
             MediaLog.i("=======播放失败=====mediaPlayer="+mediaPlayer);
@@ -186,14 +193,21 @@ public class Player {
      * @param async 是否异步缓冲(true=异步缓冲,false=同步缓冲)
      */
     private void bufferPlayer(boolean async){
+        MediaLog.i("======缓冲==1====");
         try {
+            MediaLog.i("======缓冲==2====");
             if(async){
+                MediaLog.i("======缓冲(异步)==3====");
                 //异步缓冲
                 mediaPlayer.prepareAsync() ;
+                MediaLog.i("======缓冲(异步)==4====");
             }else{
+                MediaLog.i("======缓冲(同步)==5====");
                 //同步缓冲
                 mediaPlayer.prepare();
+                MediaLog.i("======缓冲(同步)==6====");
             }
+            MediaLog.i("======缓冲==7====");
         } catch (IllegalStateException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

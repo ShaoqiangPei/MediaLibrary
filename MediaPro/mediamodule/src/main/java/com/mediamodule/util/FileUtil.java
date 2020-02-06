@@ -1,9 +1,7 @@
 package com.mediamodule.util;
 
 import android.content.res.AssetManager;
-
 import com.mediamodule.app.MediaConfig;
-
 import java.io.IOException;
 
 /**

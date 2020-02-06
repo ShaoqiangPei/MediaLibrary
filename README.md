@@ -29,7 +29,8 @@ MediaLibrary是一个媒体工具库
           .setDebug(true);//是否开启本库内部log打印(默认false,不开启)
 ```
 ### 二. 主要功能类
-[SpeechHelper](https://github.com/ShaoqiangPei/MediaLibrary/blob/master/readme/SpeechHelper%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md) ———— 语音合成工具类,主要用于将文字转语音  
+[SpeechHelper](https://github.com/ShaoqiangPei/MediaLibrary/blob/master/readme/SpeechHelper%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md) ———— 语音合成工具类,主要用于将文字转语音   
+[Player](https://github.com/ShaoqiangPei/MediaLibrary/blob/master/readme/Player%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md) ———— 音乐播放工具类(mediaplayer)  
 ### 三. Log开关及查看Log
 #### 3.1 开启/关闭 本库内部log打印
 为了方便大家在调试期间查找问题，本库提供库内部Log日志的开关。

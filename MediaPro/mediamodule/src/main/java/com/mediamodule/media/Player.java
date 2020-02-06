@@ -1,15 +1,12 @@
 package com.mediamodule.media;
 
-import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
-
-import com.mediamodule.R;
 import com.mediamodule.app.MediaConfig;
 import com.mediamodule.util.FileUtil;
 import com.mediamodule.util.MediaLog;
+import com.mediamodule.util.NetUtil;
 import com.mediamodule.util.StringUtil;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -121,6 +118,11 @@ public class Player {
         if(StringUtil.isEmpty(url)){
             throw new NullPointerException("播放url不能为空");
         }
+        //判断网络
+        if(!NetUtil.isNetworkConnected()){
+            MediaLog.i("=====网络未连接,不能播放网络音乐文件=======");
+            return;
+        }
         //释放资源
         release();
         //重新创建mediaPlayer
@@ -219,6 +221,7 @@ public class Player {
         }
     }
 
+    /**暂停**/
     public void pause() {
         if (null != mediaPlayer && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
@@ -233,6 +236,7 @@ public class Player {
         return false;
     }
 
+    /**停止**/
     public void stop() {
         if (null != mediaPlayer && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();

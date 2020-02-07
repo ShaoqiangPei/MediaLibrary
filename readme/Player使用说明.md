@@ -2,7 +2,7 @@
 
 ### 简介
 Player 主要用于播放音乐。其实现是基于`mediaplayer`的一个封装。使用简单，具备设置多种播放源的特点。  
-由于`Player`由``封装而成，所以其支持播放的音乐文件格式与``相同。支持：AAC、AMR、FLAC、MP3、MIDI、OGG、PCM等格式。
+由于`Player`由`mediaplayer`封装而成，所以其支持播放的音乐文件格式与``相同。支持：AAC、AMR、FLAC、MP3、MIDI、OGG、PCM等格式。
 
 ### 使用说明
 #### 一. Player播放流程

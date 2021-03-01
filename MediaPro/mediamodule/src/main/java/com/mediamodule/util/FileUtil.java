@@ -2,6 +2,8 @@ package com.mediamodule.util;
 
 import android.content.res.AssetManager;
 import com.mediamodule.app.MediaConfig;
+
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -32,6 +34,17 @@ public class FileUtil {
             e.printStackTrace();
             MediaLog.i(fileName + "不存在于Assets文件夹下");
             return false;
+        }
+        return false;
+    }
+
+    /**判断文件是否存在**/
+    public static boolean fileExist(String filePath){
+        if(StringUtil.isNotEmpty(filePath)){
+            File file=new File(filePath);
+            if(file.exists()){
+                return true;
+            }
         }
         return false;
     }

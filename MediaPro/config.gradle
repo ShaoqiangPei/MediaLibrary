@@ -11,7 +11,7 @@ ext {
             //项目id
             applicationId            : "com.mediapro",
             //支持SDK的最低版本  
-            minSdkVersion            : 17,
+            minSdkVersion            : 19,
             //支持SDK的目标版本 
             targetSdkVersion         : 29,
             //编译的Tools版本  
